@@ -91,6 +91,21 @@ jobs:
           APP_STORE_CONNECT_API_KEY: ${{ secrets.ASC_API_KEY }}
 ```
 
+## Use with an LLM
+
+This action pairs cleanly with an LLM agent (Claude, ChatGPT, Cursor, Continue, Aider, etc.) that builds the underlying template via Screenshots.live's public schema.
+
+The flow:
+
+1. Create a `sa_live_*` API key in your Screenshots.live dashboard.
+2. Hand the key to your LLM with the system prompt at <https://screenshots.live/llms-full.txt> (or the shorter <https://screenshots.live/llms.txt>).
+3. The LLM fetches the schema (<https://api.screenshots.live/schema/templates.json>) and `POST`s a template + items.
+4. The LLM emits a workflow that uses **this** action.
+
+A complete worked example — system prompt, bash script, expected JSON, and a working `.github/workflows/screenshots.yml` — lives at: <https://github.com/screenshots-live/screenshots-live-examples/tree/main/examples/llm-driven-templates>.
+
+Public guide for users: <https://screenshots.live/en/build-with-ai>.
+
 ## License
 
 MIT
